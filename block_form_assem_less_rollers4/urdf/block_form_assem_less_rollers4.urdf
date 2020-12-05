@@ -1,0 +1,2087 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+  <robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="mobile_manipulator" >
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur5_robot prefix="" joint_limited="false"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  
+  
+  <link name="world" />
+
+
+  <joint name="world_temp_joint" type="floating">
+    <parent link="world" />
+    <child link = "base_link_1" />
+    <origin xyz="0.0 0.0 1.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+
+
+  
+<!-- base-->
+  <link
+    name="base_link_1">
+    <inertial>
+      <origin
+        xyz="0.0000 0.000 0.0 "
+        rpy="0 0 0" />
+      <mass
+        value="99.6408679483798" />
+      <inertia
+        ixx="3.59469779122041"
+        ixy="-0.000728268105783069"
+        ixz="0.000295111625273095"
+        iyy="3.58855931601203"
+        iyz="0.00204313694270272"
+        izz="5.5187569012209" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+
+
+
+
+
+
+
+
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="-1.16920362280837E-15 4.44089209850063E-16 0.00402255269640867"
+        rpy="0 0 0" />
+      <mass
+        value="0.4864400024066262" />
+      <inertia
+        ixx="0.00103636406868231"
+        ixy="2.10554093928725E-13"
+        ixz="-1.17404346446025E-18"
+        iyy="0.00103636406984887"
+        iyz="-1.99633948645137E-18"
+        izz="0.0020568281117403" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel1"
+    type="continuous">
+    <origin
+      xyz="-0.32988 0.12379 0.452"
+      rpy="-1.5708 -0.0074665 1.2157" />
+    <parent
+      link="base_link_1" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r1">
+    <inertial>
+      <origin
+        xyz="-1.38777878078145E-15 6.10622663543836E-16 -0.000948589663706256"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353777" />
+      <inertia
+        ixx="2.62982846127634E-05"
+        ixy="2.06464280893236E-21"
+        ixz="1.6940658945086E-20"
+        iyy="2.62982846127634E-05"
+        iyz="-1.45583787809333E-20"
+        izz="9.10426201409658E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r1"
+    type="continuous">
+    <origin
+      xyz="0.0626354568216921 -0.0862103103498296 -0.0161774439709881"
+      rpy="1.5707963267949 0.0389492521049183 2.19911485751286" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r2">
+    <inertial>
+      <origin
+        xyz="0 5.55111512312578E-17 -0.000948589663708199"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353779" />
+      <inertia
+        ixx="2.62982846127645E-05"
+        ixy="-4.2351647362715E-22"
+        ixz="3.94929111657318E-20"
+        iyy="2.62982846127645E-05"
+        iyz="5.50571415715295E-21"
+        izz="9.10426201409862E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r2"
+    type="continuous">
+    <origin
+      xyz="-0.0626354568216928 -0.0862103103498292 -0.0161774439709882"
+      rpy="1.5707963267949 1.20259236637688 0.942477796076937" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r3">
+    <inertial>
+      <origin
+        xyz="4.3576E-15 -1.7764E-15 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="3.7058E-22"
+        ixz="3.3881E-20"
+        iyy="2.6298E-05"
+        iyz="8.8938E-21"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r3"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038374 0.0329294083729579 -0.016177443970988"
+      rpy="1.5707963267949 -0.374203828106358 -0.314159265358977" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r4">
+    <inertial>
+      <origin
+        xyz="-4.49640324973188E-15 5.16253706450698E-15 -0.000948589663719571"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127641E-05"
+        ixy="0"
+        ixz="4.67853354459992E-21"
+        iyy="2.62982846127641E-05"
+        iyz="-1.03753264232526E-20"
+        izz="9.10426201409772E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r4"
+    type="continuous">
+    <origin
+      xyz="0 0.106561803953742 -0.0161774439709877"
+      rpy="1.5707963267949 -0.192935246363215 -1.57079632679487" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r5">
+    <inertial>
+      <origin
+        xyz="5.60662627435704E-15 1.30728761149612E-14 -0.000948589663712085"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779225935378" />
+      <inertia
+        ixx="2.62982846127649E-05"
+        ixy="-1.27054942088145E-21"
+        ixz="2.43521972335611E-21"
+        iyy="2.62982846127649E-05"
+        iyz="1.31290106824417E-20"
+        izz="9.10426201409949E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r5"
+    type="continuous">
+    <origin
+      xyz="0.101346298038373 0.03292940837296 -0.0161774439709879"
+      rpy="-1.57079632679489 -1.18267157911311 0.314159265358996" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r5" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r6">
+    <inertial>
+      <origin
+        xyz="1.765254609154E-14 1.13797860024079E-14 -0.000948589663698984"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353777" />
+      <inertia
+        ixx="2.6298284612764E-05"
+        ixy="5.29395592033938E-22"
+        ixz="-2.81638454962055E-20"
+        iyy="2.6298284612764E-05"
+        iyz="-2.1916977510205E-20"
+        izz="9.10426201409752E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r6"
+    type="continuous">
+    <origin
+      xyz="0.101346298038373 -0.0329294083729549 0.0242225560290121"
+      rpy="-1.57079632679489 -0.520346489890168 -0.314159265358952" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r6" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r7">
+    <inertial>
+      <origin
+        xyz="1.3323E-15 8.1046E-15 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="-1.6941E-21"
+        ixz="-4.7844E-21"
+        iyy="2.6298E-05"
+        iyz="1.2021E-20"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r7"
+    type="continuous">
+    <origin
+      xyz="0 -0.106561803953744 0.0242225560290117"
+      rpy="1.5707963267949 0.325955514863472 1.57079632679492" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r7" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r8">
+    <inertial>
+      <origin
+        xyz="4.49640324973188E-15 -1.51545442861334E-14 -0.000948589663701649"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127638E-05"
+        ixy="-7.94093388050907E-22"
+        ixz="-1.61200957774334E-20"
+        iyy="2.62982846127638E-05"
+        iyz="-4.46809879676643E-20"
+        izz="9.10426201409729E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r8"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038376 -0.0329294083729612 0.0242225560290118"
+      rpy="1.57079632679492 -1.44343206565874 0.314159265358985" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r8" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r9">
+    <inertial>
+      <origin
+        xyz="1.66533453693773E-16 -5.55111512312578E-17 -0.000948589663707755"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353777" />
+      <inertia
+        ixx="2.62982846127633E-05"
+        ixy="0"
+        ixz="1.8422966602781E-20"
+        iyy="2.62982846127633E-05"
+        iyz="-1.56701095242046E-20"
+        izz="9.1042620140964E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r9"
+    type="continuous">
+    <origin
+      xyz="-0.0626354568216954 0.0862103103498284 0.0242225560290119"
+      rpy="-1.57079632679493 1.47838336748982 2.19911485751285" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r9" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w1r10">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 0 -0.000948589663708088"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.6298284612764E-05"
+        ixy="-1.27054942088145E-21"
+        ixz="-4.20340100074947E-20"
+        iyy="2.6298284612764E-05"
+        iyz="3.3881317890172E-20"
+        izz="9.10426201409764E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w1r10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1r10"
+    type="continuous">
+    <origin
+      xyz="0.062635456821688 0.0862103103498302 0.0242225560290111"
+      rpy="1.57079632679488 1.31928223655391 -2.19911485751284" />
+    <parent
+      link="wheel1" />
+    <child
+      link="w1r10" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="-4.71844785465692E-16 5.55111512312578E-17 -0.0244469242195656"
+        rpy="0 0 0" />
+      <mass
+        value="0.4864400024066262" />
+      <inertia
+        ixx="0.00103636406946356"
+        ixy="-3.60107966666454E-13"
+        ixz="-2.20793561394325E-18"
+        iyy="0.00103636406955683"
+        iyz="-1.0412807123603E-18"
+        izz="0.00205682811222951" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel2"
+    type="continuous">
+    <origin
+      xyz="0.055262890733429 -0.324887532703103 0.451999999999999"
+      rpy="-1.5707963267949 0.205530967725731 0.168485915077468" />
+    <parent
+      link="base_link_1" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r1">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 -1.11022302462516E-16 -0.000948589663709032"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.6298284612764E-05"
+        ixy="-4.2351647362715E-22"
+        ixz="-8.97325528497524E-21"
+        iyy="2.6298284612764E-05"
+        iyz="6.67038445962762E-21"
+        izz="9.10426201409767E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r1"
+    type="continuous">
+    <origin
+      xyz="0 0.106561803953743 -0.044646920886962"
+      rpy="-1.57079632679491 1.44350272621072 1.57079632679488" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r2">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 5.55111512312578E-17 -0.00144917554253488"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.6298284612764E-05"
+        ixy="1.9389113558243E-21"
+        ixz="-3.50989277518501E-20"
+        iyy="2.6298284612764E-05"
+        iyz="3.32195734001296E-20"
+        izz="9.10426201409759E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r2"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038374 0.0329294083729595 -0.044646920886963"
+      rpy="1.5707963267949 -0.420274812157277 -0.314159265358993" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r3">
+    <inertial>
+      <origin
+        xyz="1.1102E-16 0 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="-8.4703E-22"
+        ixz="1.2282E-20"
+        iyy="2.6298E-05"
+        iyz="3.1764E-22"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r3"
+    type="continuous">
+    <origin
+      xyz="-0.0626354568216924 -0.0862103103498292 -0.0446469208869626"
+      rpy="1.57079632679489 -0.278492282965708 0.942477796076933" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r4">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -5.55111512312578E-17 -0.000948589663708255"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127633E-05"
+        ixy="-2.11758236813575E-22"
+        ixz="-4.2351647362715E-22"
+        iyy="2.62982846127633E-05"
+        iyz="-8.36974431005656E-20"
+        izz="9.10426201409646E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r4"
+    type="continuous">
+    <origin
+      xyz="0.0626354568216918 -0.0862103103498302 -0.0446469208869627"
+      rpy="-1.57079632679489 -0.173209648347795 -0.942477796076944" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r5">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 0 -0.00094858966370881"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.6298284612764E-05"
+        ixy="2.11758236813575E-22"
+        ixz="1.91641204316285E-20"
+        iyy="2.6298284612764E-05"
+        iyz="-3.64224167319349E-20"
+        izz="9.10426201409766E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r5"
+    type="continuous">
+    <origin
+      xyz="0.101346298038375 0.0329294083729582 -0.0446469208869621"
+      rpy="1.5707963267949 -1.34986948714643 -2.82743338823081" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r5" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r6">
+    <inertial>
+      <origin
+        xyz="-2.1372E-15 -6.1062E-16 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="-1.6941E-21"
+        ixz="-1.3764E-20"
+        iyy="2.6298E-05"
+        iyz="6.141E-21"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r6"
+    type="continuous">
+    <origin
+      xyz="0.0626354568216925 0.0862103103498275 -0.00424692088696171"
+      rpy="-1.5707963267949 0.459809968138522 0.942477796076923" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r6" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r7">
+    <inertial>
+      <origin
+        xyz="4.71844785465692E-16 -3.33066907387547E-16 -0.000948589663706312"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779225935378" />
+      <inertia
+        ixx="2.6298284612765E-05"
+        ixy="2.11758236813575E-21"
+        ixz="-2.96461531539005E-20"
+        iyy="2.6298284612765E-05"
+        iyz="-8.470329472543E-21"
+        izz="9.10426201409953E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r7"
+    type="continuous">
+    <origin
+      xyz="-0.0626354568216903 0.0862103103498307 -0.00424692088696199"
+      rpy="-1.5707963267949 0.616451371275997 2.19911485751284" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r7" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r8">
+    <inertial>
+      <origin
+        xyz="-1.66533453693773E-16 -5.55111512312578E-17 -0.000948589663709976"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127644E-05"
+        ixy="-2.5410988417629E-21"
+        ixz="4.40457132572236E-20"
+        iyy="2.62982846127644E-05"
+        iyz="9.74087889342445E-21"
+        izz="9.10426201409843E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r8"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038375 -0.0329294083729583 -0.00424692088696221"
+      rpy="-1.5707963267949 0.821713442288921 -2.82743338823082" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r8" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r9">
+    <inertial>
+      <origin
+        xyz="2.22044604925031E-16 -1.11022302462516E-16 -0.000948589663712376"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779225935378" />
+      <inertia
+        ixx="2.62982846127649E-05"
+        ixy="2.5410988417629E-21"
+        ixz="-1.10114283143059E-20"
+        iyy="2.62982846127649E-05"
+        iyz="-1.23878568535941E-20"
+        izz="9.10426201409946E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r9"
+    type="continuous">
+    <origin
+      xyz="0 -0.106561803953743 -0.0042469208869621"
+      rpy="-1.57079632679489 0.795661033427445 -1.57079632679489" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r9" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w2r10">
+    <inertial>
+      <origin
+        xyz="3.80251385934116E-15 3.33066907387547E-16 -0.000948589663709976"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353777" />
+      <inertia
+        ixx="2.62982846127639E-05"
+        ixy="-6.17076736964559E-22"
+        ixz="-4.27751638363422E-20"
+        iyy="2.62982846127639E-05"
+        iyz="1.24805010822001E-20"
+        izz="9.10426201409741E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w2r10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2r10"
+    type="continuous">
+    <origin
+      xyz="0.101346298038373 -0.0329294083729589 -0.00424692088696182"
+      rpy="-1.5707963267949 -0.0624955819662775 -0.314159265358988" />
+    <parent
+      link="wheel2" />
+    <child
+      link="w2r10" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel3">
+    <inertial>
+      <origin
+        xyz="9.71445146547012E-16 -1.22124532708767E-15 -0.177677930677455"
+        rpy="0 0 0" />
+      <mass
+        value="0.4864400024066262" />
+      <inertia
+        ixx="0.00103636406985238"
+        ixy="-1.29326562479937E-13"
+        ixz="1.63970461821426E-18"
+        iyy="0.00103636406911974"
+        iyz="-7.97088204858005E-19"
+        izz="0.00205682811218123" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/wheel3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel3"
+    type="continuous">
+    <origin
+      xyz="0.1367 0.11508 0.452"
+      rpy="1.5708 -0.40557 -0.87871" />
+    <parent
+      link="base_link_1" />
+    <child
+      link="wheel3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r1">
+    <inertial>
+      <origin
+        xyz="1.16573417585641E-15 2.77555756156289E-16 -0.000948589663695987"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127644E-05"
+        ixy="-1.27054942088145E-21"
+        ixz="2.45639554703747E-20"
+        iyy="2.62982846127644E-05"
+        iyz="-2.5410988417629E-20"
+        izz="9.10426201409847E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r1"
+    type="continuous">
+    <origin
+      xyz="0.062635456821687 -0.0862103103498446 -0.197877927344852"
+      rpy="1.5707963267949 0.29526057753839 2.19911485751274" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r2">
+    <inertial>
+      <origin
+        xyz="1.33226762955019E-15 1.33226762955019E-15 -0.000948589663711141"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779225935378" />
+      <inertia
+        ixx="2.62982846127652E-05"
+        ixy="1.6940658945086E-21"
+        ixz="5.9292306307801E-21"
+        iyy="2.62982846127652E-05"
+        iyz="-3.76929661528164E-20"
+        izz="9.10426201409997E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r2"
+    type="continuous">
+    <origin
+      xyz="0.10135 0.032929 -0.19788"
+      rpy="1.5708 0.9828 -2.8274" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r3">
+    <inertial>
+      <origin
+        xyz="0 2.22044604925031E-16 -0.000948589663711696"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127634E-05"
+        ixy="-1.6940658945086E-21"
+        ixz="-7.41153828847513E-21"
+        iyy="2.62982846127634E-05"
+        iyz="-4.70103285726137E-20"
+        izz="9.10426201409663E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r3"
+    type="continuous">
+    <origin
+      xyz="0 0.106561803953741 -0.197877927344851"
+      rpy="1.5707963267949 0.911802804328627 -1.5707963267949" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r4">
+    <inertial>
+      <origin
+        xyz="1.929E-15 -2.7756E-16 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="1.0919E-21"
+        ixz="2.4035E-20"
+        iyy="2.6298E-05"
+        iyz="-4.8066E-20"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r4"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038371 0.0329294083729708 -0.197877927344852"
+      rpy="-1.57079632679489 0.0712998608497995 2.82743338823069" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r5">
+    <inertial>
+      <origin
+        xyz="3.05311331771918E-16 -7.7715611723761E-16 -0.000948589663694002"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353779" />
+      <inertia
+        ixx="2.62982846127651E-05"
+        ixy="1.6940658945086E-21"
+        ixz="-5.90805480709874E-20"
+        iyy="2.6298284612765E-05"
+        iyz="-2.41404389967476E-20"
+        izz="9.1042620140997E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r5"
+    type="continuous">
+    <origin
+      xyz="-0.062635 -0.08621 -0.19788"
+      rpy="-1.5708 0.89159 -2.1991" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r5" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r6">
+    <inertial>
+      <origin
+        xyz="-5.5511E-17 -2.7756E-17 -0.00094859"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779" />
+      <inertia
+        ixx="2.6298E-05"
+        ixy="-8.4703E-22"
+        ixz="2.6999E-20"
+        iyy="2.6298E-05"
+        iyz="-5.7175E-21"
+        izz="9.1043E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r6"
+    type="continuous">
+    <origin
+      xyz="0 -0.106561803953743 -0.157477927344852"
+      rpy="-1.5707963267949 -0.977167817327775 -1.57079632679501" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r6" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r7">
+    <inertial>
+      <origin
+        xyz="-9.99200722162641E-16 3.88578058618805E-16 -0.000948589663709531"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127635E-05"
+        ixy="0"
+        ixz="-2.2446373102239E-20"
+        iyy="2.62982846127635E-05"
+        iyz="3.74812079160028E-20"
+        izz="9.10426201409669E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r7"
+    type="continuous">
+    <origin
+      xyz="-0.101346298038378 -0.0329294083729469 -0.157477927344851"
+      rpy="1.5707963267949 -0.454029260266215 0.314159265358866" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r7" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r8">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 0 -0.000948589663707644"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127634E-05"
+        ixy="-6.35274710440725E-22"
+        ixz="-9.10560418298373E-21"
+        iyy="2.62982846127634E-05"
+        iyz="-5.75982404132924E-20"
+        izz="9.10426201409648E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r8"
+    type="continuous">
+    <origin
+      xyz="-0.0626354568216825 0.0862103103498373 -0.157477927344851"
+      rpy="1.5707963267949 -0.553322090384503 -0.942477796077055" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r8" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r9">
+    <inertial>
+      <origin
+        xyz="0 0 -0.000948589663707214"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627912259353779225935378" />
+      <inertia
+        ixx="2.6298284612765E-05"
+        ixy="-2.5410988417629E-21"
+        ixz="1.92699995500353E-20"
+        iyy="2.6298284612765E-05"
+        iyz="-6.39509875176997E-20"
+        izz="9.1042620140996E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r9"
+    type="continuous">
+    <origin
+      xyz="0.0626354568217015 0.0862103103498223 -0.157477927344851"
+      rpy="1.57079632679489 -1.17926366626493 -2.19911485751296" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r9" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="w3r10">
+    <inertial>
+      <origin
+        xyz="6.93889390390723E-18 5.55111512312578E-17 -0.000948589663710198"
+        rpy="0 0 0" />
+      <mass
+        value="0.06279122593537792259353778" />
+      <inertia
+        ixx="2.62982846127634E-05"
+        ixy="1.48230765769503E-21"
+        ixz="-3.60518398175112E-20"
+        iyy="2.62982846127635E-05"
+        iyz="-2.84550130718242E-20"
+        izz="9.10426201409663E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://block_form_assem_less_rollers4/meshes/w3r10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w3r10"
+    type="continuous">
+    <origin
+      xyz="0.10134629803837 -0.0329294083729704 -0.157477927344851"
+      rpy="1.5707963267949 0.431484100788578 2.82743338823069" />
+    <parent
+      link="wheel3" />
+    <child
+      link="w3r10" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+ 
+<!--
+ <joint name="world_joint_arm" type="floating">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.035 -0.29 1.9" rpy="0.0 0.0 -1.117009778" />
+  </joint>
+
+  -->
+
+  
+  
+  <joint name="world_joint" type="fixed">
+    <parent link="base_link_1" />
+    <child link = "base_link" />
+    <origin xyz="0.035 -0.29 0.9" rpy="0.0 0.0 -1.117009778" />
+  </joint>
+
+<!--   0.7853975-->
+
+
+
+  <transmission name="wheel1_transmission">
+
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel1">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+
+    </joint>
+    <actuator name="wheel1_motor">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+
+    </actuator>
+
+  </transmission>
+  <transmission name="wheel2_transmission">
+
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel2">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+
+    </joint>
+    <actuator name="wheel2_motor">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+
+    </actuator>
+
+  </transmission>
+  <transmission name="wheel3_transmission">
+
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel3">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+
+    </joint>
+    <actuator name="wheel3_motor">
+
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+
+    </actuator>
+
+  </transmission>
+
+  
+
+  <gazebo>
+
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+
+      <robotNamespace>/block_form_assem_less_rollers4</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>     
+      <legacyModeNS>true</legacyModeNS>
+
+    </plugin>
+
+  </gazebo>
+
+  <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>20.0</updateRate>
+    <bodyName>base_link_1</bodyName>
+    <topicName>odom</topicName>
+    <gaussianNoise>0.01</gaussianNoise>
+    <frameName>world</frameName>
+    <xyzOffsets>0 0 0</xyzOffsets>
+    <rpyOffsets>0 0 0</rpyOffsets>
+</plugin>
+
+  <xacro:property name="cameraSize" value="0.05"/>
+  <xacro:property name="cameraMass" value="0.1"/>
+
+  <link name="camera">
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.1" />
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <box_inertia m="0.1" x="0.05" y="0.05" z="0.05" />
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    <parent link="base_link_1"/>
+    <child link="camera"/>
+  </joint>
+
+  
+   <gazebo reference="camera">
+    <material>Gazebo/Green</material>
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>mybot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  
+
+  <joint name="hokuyo_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.15 0 0.85" rpy="0 0 0"/>
+    <parent link="base_link_1"/>
+    <child link="hokuyo"/>
+  </joint>
+
+
+  <link name="hokuyo">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://block_form_assem_less_rollers4/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+
+  
+    
+   <gazebo reference="hokuyo">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/mybot/laser/scan</topicName>
+        <frameName>hokuyo</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  	
+
+    <gazebo>
+				<plugin	name="joint_state_publisher"
+												filename="libgazebo_ros_joint_state_publisher.so">
+						<jointName>shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint</jointName>
+				</plugin>
+		</gazebo>
+
+
+    <gazebo>
+        <plugin name="joint_state_publisher"
+                        filename="libgazebo_ros_joint_state_publisher.so">
+            <robotNamespace>block_form_assem_less_rollers4</robotNamespace>
+            <jointName>wheel1,wheel2,wheel3</jointName>
+        </plugin>
+    </gazebo>
+
+
+</robot>

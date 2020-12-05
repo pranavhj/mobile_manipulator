@@ -1,0 +1,12 @@
+<launch>
+  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+    <remap from="/scan" to="/mybot/laser/scan"/>
+    <param name="base_frame" value="base_link_1"/>
+    <param name="laser_frame" value="hokuyo"/>
+    <param name="odom_frame" value="odom"/>
+    <remap from="/odom" to="/block_form_assem_less_rollers4/odom"/>
+    <param name="_linearUpdate" value="0.0005"/>
+    <param name="_angularUpdate" value="0.0005"/>
+
+  </node>
+</launch>

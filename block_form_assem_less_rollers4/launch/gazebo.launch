@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<launch>
+
+
+
+
+<arg name="paused" default="false" doc="Starts gazebo in paused mode" />
+<arg name="gui" default="true" doc="Starts gazebo gui" />
+<arg name="limited" default="false" doc="If true, limits joint range [-PI, PI] on all joints." />
+<arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+
+
+
+
+
+
+
+
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  
+  <param unless="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find block_form_assem_less_rollers4)/urdf/block_form_assem_less_rollers4.urdf' " />
+
+
+  <param if="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find block_form_assem_less_rollers4)/urdf/block_form_assem_less_rollers4.urdf' " />
+
+
+
+
+<!--
+<node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link_1 base_footprint 40" />
+-->
+
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-urdf -param robot_description -model block_form_assem_less_rollers4"
+    output="screen" />
+
+
+
+
+<rosparam file="$(find block_form_assem_less_rollers4)/config/gazebo_pid_parameters.yaml"
+  command="load"/>
+
+
+
+
+<rosparam file="$(find block_form_assem_less_rollers4)/config/block_form_assem_less_rollers4.yaml"
+  command="load"/>
+
+
+
+
+
+
+  <!-- Fake Calibration -->
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
+        args="pub /calibrated std_msgs/Bool true" />
+  
+  <!-- joint_state_controller   -->
+  
+  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller" respawn="false"  output="screen"/>
+ 
+
+
+  <!-- joint_state_controller -->
+
+  <include file="$(find demo_moveit_config)/launch/ros_controllers.launch"/>
+
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+  output="screen" args="--namespace=/block_form_assem_less_rollers4
+        joint_state_controller
+        wheel1_joint_position_controller
+        wheel2_joint_position_controller
+        wheel3_joint_position_controller
+        
+        
+        --shutdown-timeout 3"/>
+
+
+  
+
+
+
+
+  <!--load other controllers-->
+  <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen"  />
+
+    
+
+
+</launch>
